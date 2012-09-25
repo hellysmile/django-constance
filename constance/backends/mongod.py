@@ -31,7 +31,7 @@ class MongoBackend(Backend):
         except:
             return None
         if value:
-            return loads(value)
+            return loads(str(value.value))
         return None
 
     def mget(self, keys):
