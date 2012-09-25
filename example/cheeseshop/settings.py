@@ -53,12 +53,22 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = ''
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/static/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+#ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'hdx64#m+lnc_0ffoyehbk&7gk1&*9uar$pcfcm-%$km#p0$k=6'
@@ -92,21 +102,22 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
+    'grappelli',
     'django.contrib.admin',
     'cheeseshop.apps.catalog',
     'cheeseshop.apps.storage',
     'constance',
 )
 
-CONSTANCE_CONNECTION = {
-    'host': 'localhost',
-    'port': 6379,
-    'db': 0,
-}
+CONSTANCE_BACKEND = 'constance.backends.mongod.MongoBackend'
+
+import mongoengine
+mongoengine.connect('some_database')
 
 CONSTANCE_CONFIG = {
-	'BANNER': ('The National Cheese Emporium', 'name of the shop'),
+    'BANNER': ('The National Cheese Emporium', 'name of the shop'),
     'OWNER': ('Mr. Henry Wensleydale', 'owner of the shop'),
     'MUSICIANS': (4, 'number of musicians inside the shop'),
     'DATE_ESTABLISHED': (datetime(1972, 11, 30), "the shop's first opening"),
