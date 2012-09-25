@@ -1,3 +1,7 @@
+**THIS APP change_list.html SUPPORTS ONLY django-grappelli:**
+
+https://github.com/sehmaschine/django-grappelli
+
 Dynamic Django settings
 =======================
 
@@ -6,19 +10,14 @@ Features
 
 * Easily migrate your static settings to dynamic settings.
 * Admin interface to edit the dynamic settings.
+* Mongoengine backend
 
 Installation
 ------------
 
-Install from PyPI::
+install the `in-development version`_ using ``pip``::
 
-    pip install django-constance
-
-Or install the `in-development version`_ using ``pip``::
-
-    pip install -e git+git://github.com/comoga/django-constance#egg=django-constance
-
-.. _`in-development version`: https://github.com/comoga/django-constance/tarball/master#egg=django-constance-dev
+    pip install -e git+git://github.com/hellysmile/django-constance#egg=django-constance
 
 Configuration
 -------------
@@ -49,6 +48,19 @@ Constance ships with a bunch of backends that are used to store the
 configuration values. By default it uses the Redis backend. To override
 the default please set the ``CONSTANCE_BACKEND`` setting to the appropriate
 dotted path.
+
+Mongoengine
++++++++++++
+
+::
+
+    CONSTANCE_BACKEND = 'constance.backends.mongod.MongoBackend'
+
+
+* setup mongoengine
+
+    import mongoengine
+    mongoengine.connect('some_database')
 
 Redis (default)
 +++++++++++++++
@@ -173,12 +185,8 @@ with ``MY_SETTINGS_KEY`` in the ``Config`` pseudo model.
 Screenshots
 -----------
 
-.. figure:: https://github.com/comoga/django-constance/raw/master/docs/screenshot2.png
+.. figure:: https://github.com/hellysmile/django-constance/raw/master/docs/screenshot.png
 
-   The standard edit screen.
-
-.. figure:: https://github.com/comoga/django-constance/raw/master/docs/screenshot1.png
-
-   The virtual application ``Constance`` among your regular applications.
+   The virtual application ``Constance`` among your regular applications with django-grappelli.
 
 
