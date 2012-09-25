@@ -57,7 +57,7 @@ Mongoengine
     CONSTANCE_BACKEND = 'constance.backends.mongod.MongoBackend'
 
 
-* setup mongoengine
+* setup mongoengine::
 
     import mongoengine
     mongoengine.connect('some_database')
