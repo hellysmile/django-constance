@@ -14,7 +14,7 @@ try:
     from mongoengine import *
 except ImportError:
     raise ImproperlyConfigured(
-        "The Mongo backend requires mongoengine to be installed.")
+        "The Mongoengine backend requires mongoengine to be installed.")
 
 class Constance(Document):
     key = StringField()
@@ -43,5 +43,11 @@ class MongoBackend(Backend):
                 yield item.key, loads(str(item.value))
 
     def set(self, key, value):
-        item = Constance(key=key, value=dumps(str(value)))
-        item.save()
+        try:
+            item = Constance.objects.get(key=key)
+            item.value = dumps(value)
+            item.save()
+        except:
+            item = Constance(key=key, value=dumps(value))
+            item.save()
+        
